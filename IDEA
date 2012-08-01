@@ -2,7 +2,7 @@
 
 User
   String: _:user:nextid
-  Hash: user:[id] {id, username, password, email, created_at, logged_at}
+  Hash: user:[id] {id, username, password, email, created_at, logged_at, has_avatar}
   String: user:username:[username] [id]
   String: user:email:[email] [id]
   Sorted Set: user:[id]:topics [topic_id] [topic_id]
