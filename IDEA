@@ -1,0 +1,42 @@
+====== Data Schema ======
+
+User
+  String: _:user:nextid
+  Hash: user:[id] {id, username, password, email, created_at, logged_at}
+  String: user:username:[username] [id]
+  String: user:email:[email] [id]
+  Sorted Set: user:[id]:topics [topic_id] [topic_id]
+  Sorted Set: user:[id]:replies [reply_id] [reply_id]
+
+Topic
+  String: _:topic:nextid
+  Hash: topic:[id] {id, author_id, title, body, created_at}
+  Set: topic:[id]:tags [tag]
+  Sorted Set: topic:[id]:replies [reply_id] [reply_id]
+  String: topic:[id]:num_of_replies [number of replies]
+
+Reply
+  String: _:reply:nextid
+  Hash: reply:[id] {id, topic_id, author_id, entry, created_at}
+  Sorted Set: topic:[id]:replies [id] [id]
+
+Tag
+  Sorted Set: tags [tag] [number of uses]
+  Sorted Set: tag:[tag] [topic_id] [topic_id]
+
+
+====== Web Structure ======
+
+/
+/signin
+/signout
+/signup
+/user
+/user/[username]
+/user/settings
+/user/settings/profile
+/topic
+/topic/[topic id]
+/tag
+/tag/[tag]
+
