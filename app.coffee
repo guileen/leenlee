@@ -6,6 +6,7 @@ routes = require './routes'
 app = module.exports = express()
 
 app.configure ->
+  app.set 'port', process.env.PORT or 3000
   app.set 'views', path.join __dirname, 'views'
   app.set 'view engine', 'jade'
   app.use express.cookieParser()
@@ -24,6 +25,5 @@ app.locals
   title: 'leenlee'
   DEBUG: 'production' isnt app.get 'env'
 
-port = process.env.PORT or 3000
-http.createServer(app).listen port, ->
-  console.log 'Server listening %s', port
+http.createServer(app).listen app.get('port'), ->
+  console.log 'Server listening %s', app.get 'port'
