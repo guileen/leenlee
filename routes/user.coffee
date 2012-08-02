@@ -1,8 +1,10 @@
-exports.signup = (req, res) ->
-  res.render 'user/signup'
+module.exports = (app) ->
 
-exports.signin = (req, res) ->
-  res.render 'user/signin'
+  app.post '/signup', (req, res) ->
+    res.render 'user/signup'
 
-exports.signout = (req, res) ->
-  res.redirect '/'
+  app.post '/signin', (req, res) ->
+    res.render 'user/signin'
+
+  app.get '/signout', (req, res) ->
+    res.redirect '/'
