@@ -1,0 +1,20 @@
+{
+  "name": "leenlee",
+  "description": "A fourm by guileen and shaunlee",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/guileen/leenlee.git"
+  },
+  "dependencies": {
+    "kick": "0.1.5"
+  , "connect": "2.x"
+  , "jade": "*"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
