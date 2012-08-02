@@ -1,6 +1,18 @@
 doctype 5
 html
   head
+    meta(charset='utf-8')
     title= title
+    - if (DEBUG)
+      link(rel='stylesheet', href='/css/bootstrap.min.css')
+      link(rel='stylesheet/less', href='/css/all-src.less')
+      script(src='/js/less.min.js')
+      script(src='/js/jquery.min.js')
+      script(src='/js/bootstrap.min.js')
+      script(type='text/coffeescript', src='/js/all-src.coffee')
+      script(src='/js/coffee-script.min.js')
+    - else
+      link(rel='stylesheet', href='/css/all.css')
+      script(src='/js/all.js')
   body
     block content
