@@ -24,5 +24,6 @@ app.locals
   title: 'leenlee'
   DEBUG: 'production' isnt app.get 'env'
 
-http.createServer(app).listen 3000, ->
-  console.log 'Server listening ...'
+port = process.env.PORT or 3000
+http.createServer(app).listen port, ->
+  console.log 'Server listening %s', port
