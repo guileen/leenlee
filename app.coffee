@@ -22,5 +22,6 @@ app.get '/', routes.index
 app.locals =
   title: 'leenlee'
 
-http.createServer(app).listen 3000, ->
-  console.log 'Server listening ...'
+port = process.env.PORT or 3000
+http.createServer(app).listen port, ->
+  console.log 'Server listening %s', port
