@@ -14,7 +14,8 @@ html
     - else
       link(rel='stylesheet', href='/css/all.css')
       script(src='/js/all.js')
-  body
-    block content
+  body.post-list
+    .page-wrapper
+      block content
 
     #dialog.modal.hide
