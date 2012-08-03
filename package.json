@@ -10,6 +10,7 @@
   "dependencies": {
     "kick": "0.1.5"
   , "connect": "2.x"
+  , "express": "3.x"
   , "jade": "*"
   },
   "devDependencies": {},
