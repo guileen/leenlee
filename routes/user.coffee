@@ -1,10 +1,10 @@
 module.exports = (app) ->
 
-  app.post '/signup', (req, res) ->
+  app.get '/user/signup', (req, res) ->
     res.render 'user/signup'
 
-  app.post '/signin', (req, res) ->
+  app.get '/user/signin', (req, res) ->
     res.render 'user/signin'
 
-  app.get '/signout', (req, res) ->
+  app.get '/user/signout', (req, res) ->
     res.redirect '/'

@@ -2,3 +2,8 @@ extends layout
 
 block content
   h1 leenlee
+
+  ul.nav.nav-pills
+    li: a(href='/user/signup', class='btn-signup') 注册
+    li: a(href='/user/signin', class='btn-signin') 登录
+    li: a(href='/user/signout') 登出

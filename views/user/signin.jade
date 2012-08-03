@@ -1,0 +1,15 @@
+.modal-header
+  button.close(type='button', data-dismiss='modal') x
+  h3 登录
+.modal-body
+  form.form-horizontal
+    .control-group
+      label.control-label(for='username') 用户名
+      .controls
+        input.input-xlarge(type='text', id='username', name='User[username]')
+    .control-group
+      label.control-label(for='password') 密码
+      .controls
+        input.input-xlarge(type='password', id='password', name='User[password]')
+.modal-footer
+  a.btn.btn-primary 登录
