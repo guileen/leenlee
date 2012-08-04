@@ -4,29 +4,34 @@ block content
   .sidebar
     .top-nav
       h1 leenlee
-
-      ul.nav.nav-pills
-        li: a(href='/user/signup', class='btn-signup') 注册
-        li: a(href='/user/signin', class='btn-signin') 登录
-        li: a(href='/user/signout') 登出
+      .nano
+        .content
+          ul.nav.nav-pills
+            li: a(href='/user/signup', class='btn-signup') 注册
+            li: a(href='/user/signin', class='btn-signin') 登录
+            li: a(href='/user/signout') 登出
     .post-list
       .back-bar
         a(href='#') 後退
-      - for (var i =0; i< 100; i++)
-        .list-item
-          h3 這是一個靠譜的交流社區這是一個靠譜的交流社區這是一個靠譜的交流社區
-          p 這是一個靠譜的交流社區這是一個靠譜的交流社區這是一個靠譜的交流社區
+      .nano
+        .content
+          - for (var i =0; i< 100; i++)
+            .list-item
+              h3 這是一個靠譜的交流社區這是一個靠譜的交流社區這是一個靠譜的交流社區
+              p 這是一個靠譜的交流社區這是一個靠譜的交流社區這是一個靠譜的交流社區
   .main
     .back-bar
       a(href='#') 後退
-    // .post-wrapper.no-reply
-    .post-wrapper
-      .post
-        h2 我是標題
-        - var arr = new Array(100), s = arr.join('我是內容')
-        p #{s}
-      - for(var i=0;i<100;i++)
-        .post
-          p #{arr.join('我是回復')}
-
-
+    .nano
+      .content
+        // .post-wrapper.no-reply
+        .post-wrapper
+          .post
+            h2 我是標題
+            - var arr = new Array(100), s = arr.join('我是內容')
+            p #{s}
+          - for(var i=0;i<100;i++)
+            .post
+              p #{arr.join('我是回復')}
+    <link rel="stylesheet" href="/css/nanoscroller.css">
+    <script src="/js/jquery.nanoscroller.min.js"></script>

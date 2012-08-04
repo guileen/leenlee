@@ -3,11 +3,15 @@ html,
 body,
 .page-wrapper,
 .sidebar,
-.top-nav,
+// .top-nav,
 .post-list,
 .main {
   height: 100%;
   position: relative; // fix safari scrollbar hidden problem
+  overflow-y: hidden;
+}
+
+.nano {
   overflow-y: auto;
 }
 
@@ -67,10 +71,16 @@ body,
 @media (min-width:760px) and (max-width:1024px) {
   .sidebar {
     width: 240px;
+    .top-nav {
+      display: block;
+      width: 100%;
+    }
     .post-list {
       display: none;
+      width: 100%;
     }
     .back-bar {
+      width: 100%;
       display: block;
     }
   }
