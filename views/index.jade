@@ -4,12 +4,10 @@ block content
   .sidebar
     .top-nav
       h1 leenlee
-      .nano
-        .content
-          ul.nav.nav-pills
-            li: a(href='/user/signup', class='btn-signup') 注册
-            li: a(href='/user/signin', class='btn-signin') 登录
-            li: a(href='/user/signout') 登出
+      ul.nav.nav-pills
+        li: a(href='/user/signup', class='btn-signup') 注册
+        li: a(href='/user/signin', class='btn-signin') 登录
+        li: a(href='/user/signout') 登出
     .post-list
       .back-bar
         a(href='#') 後退
@@ -33,5 +31,3 @@ block content
           - for(var i=0;i<100;i++)
             .post
               p #{arr.join('我是回復')}
-    <link rel="stylesheet" href="/css/nanoscroller.css">
-    <script src="/js/jquery.nanoscroller.min.js"></script>
