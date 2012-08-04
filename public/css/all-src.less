@@ -1,7 +1,14 @@
 // all-src.less
-.page-wrapper {
-  width: 100%;
-  float: left;
+html,
+body,
+.page-wrapper,
+.sidebar,
+.top-nav,
+.post-list,
+.main {
+  height: 100%;
+  position: relative; // fix safari scrollbar hidden problem
+  overflow: scroll;
 }
 
 .sidebar {
@@ -21,7 +28,19 @@
   display: none;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
+  .sidebar {
+    width: 35%;
+    .top-nav {
+      width: 30%;
+    }
+    .post-list {
+      width: 70%;
+    }
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
   .sidebar {
     width: 400px;
     .top-nav {
