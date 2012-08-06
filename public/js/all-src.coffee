@@ -18,3 +18,5 @@ $ ->
    #  <script src="/js/jquery.nanoscroller.min.js"></script>
    #  '
     $('.nano').nanoScroller {preventPageScrolling: true}
+  else
+    $('.nano').css {"overflow-y": auto}
