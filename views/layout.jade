@@ -19,5 +19,25 @@ html
   body.post-list
     .page-wrapper
       block content
+        .sidebar
+          .top-nav
+            block top-nav
+              h1 leenlee
+              ul.nav.nav-pills
+                li: a(href='/user/signup', class='btn-signup') 注册
+                li: a(href='/user/signin', class='btn-signin') 登录
+                li: a(href='/user/signout') 登出
+          .post-list
+            block post-list
+              .back-bar
+                a(href='#') 後退
+              .nano
+                .content
+                  - for (var i =0; i< 100; i++)
+                    .list-item
+                      h3 這是一個靠譜的交流社區這是一個靠譜的交流社區這是一個靠譜的交流社區
+                      p 這是一個靠譜的交流社區這是一個靠譜的交流社區這是一個靠譜的交流社區
+        .main
+          block main
 
     #dialog.modal.hide
