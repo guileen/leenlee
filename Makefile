@@ -5,7 +5,8 @@ FOLDER = public
 CSS_FOLDER = $(FOLDER)/css
 CSS_C = lessc
 CSS_C_OPTS = --yui-compress
-CSS_DEPS = $(CSS_FOLDER)/bootstrap.min.css
+CSS_DEPS = $(CSS_FOLDER)/bootstrap.min.css \
+					 #$(CSS_FOLDER)/nanoscroller.min.css
 CSS_SRCS = $(CSS_FOLDER)/all-src.css
 
 COFFEE_FOLDER = $(FOLDER)/js
@@ -16,7 +17,9 @@ JS_FOLDER = $(FOLDER)/js
 JS_C = uglifyjs
 JS_C_OPTS = -nc
 JS_DEPS = $(JS_FOLDER)/jquery.min.js \
-				$(JS_FOLDER)/bootstrap.min.js
+				$(JS_FOLDER)/jquery.validate.min.js \
+				$(JS_FOLDER)/bootstrap.min.js \
+				#$(JS_FOLDER)/jquery.nanoscroller.min.js
 JS_SRCS = $(JS_FOLDER)/all.min.js
 
 CONCAT = cat
