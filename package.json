@@ -12,6 +12,7 @@
   , "connect": "2.x"
   , "express": "3.x"
   , "jade": "*"
+  , "oauth": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {},
