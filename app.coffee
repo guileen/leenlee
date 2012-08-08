@@ -1,14 +1,19 @@
 express = require 'express'
 http = require 'http'
 path = require 'path'
+redis = require 'redis'
 routes = require './routes'
 
 app = module.exports = express()
+
+db = redis.createClient()
+db.select 1
 
 app.configure ->
   app.set 'port', process.env.PORT or 3000
   app.set 'views', path.join __dirname, 'views'
   app.set 'view engine', 'jade'
+  app.set 'db', db
   app.use express.cookieParser()
   app.use express.bodyParser()
   app.use express.methodOverride()
