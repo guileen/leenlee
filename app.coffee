@@ -20,6 +20,7 @@ app.configure ->
   app.use app.router
 
 app.configure 'development', ->
+  app.set 'view options', pretty: true
   app.use express.static path.join __dirname, 'public'
   app.use express.errorHandler()
 
