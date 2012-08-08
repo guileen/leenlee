@@ -3,7 +3,7 @@ exports = module.exports =
     host: 'localhost'
     port: 6379
   oauth2:
-    base_redirect_uri: 'http://localhost:3000/signin/oauth2/'
+    base_redirect_uri: 'http://localhost:3000/user/signin/oauth2/'
     sina:
       client_id: '880460163'
       secret: 'b93e10718f07462e8fda30c8015143d4'

@@ -11,7 +11,7 @@ module.exports = (app) ->
   getOA2 = (appinfo) ->
     new OAuth2(appinfo.client_id, appinfo.secret, appinfo.base, appinfo.authorize_path, appinfo.access_token_path)
 
-  app.get "/signin/:type", (req, res, next) ->
+  app.get "/user/signin/:type", (req, res, next) ->
     type = req.params.type
     appinfo = getAppInfo(type)
     return next("OAuth2 info of " + type + " is not defined")  unless appinfo
@@ -26,7 +26,7 @@ module.exports = (app) ->
       response_type: "code"
     )
 
-  app.get "/signin/oauth2/:type", (req, res, next) ->
+  app.get "/user/signin/oauth2/:type", (req, res, next) ->
     type = req.params.type
     appinfo = config.oauth2[type]
     oa2 = getOA2(appinfo)

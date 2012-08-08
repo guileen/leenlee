@@ -1,5 +1,5 @@
 exports.user = require './user'
-exports.oa2 = require './oa2'
+exports.oauth = require './oauth'
 
 exports.index = (req, res) ->
   res.render 'index'

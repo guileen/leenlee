@@ -25,7 +25,7 @@ app.configure 'development', ->
 
 app.get '/', routes.index
 routes.user app
-routes.oa2 app
+routes.oauth app
 
 app.locals
   title: 'leenlee'
