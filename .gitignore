@@ -23,3 +23,4 @@ public/js/all.js
 public/js/all.min.js
 
 config.js
+config.coffee
