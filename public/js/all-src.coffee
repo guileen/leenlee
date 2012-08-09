@@ -1,17 +1,18 @@
 # all-src.less
 
 $ ->
-  dialog = $('#dialog')
+  $dialog = $('#dialog')
 
   $('.btn-signup').click (e) ->
     e.preventDefault()
-    dialog.load $(this).attr('href'), ->
-      dialog.modal()
+    $dialog.load $(this).attr('href'), ->
+      $dialog.modal()
 
   $('.btn-signin').click (e) ->
     e.preventDefault()
-    dialog.load $(this).attr('href'), ->
-      dialog.modal()
+    $dialog.load $(this).attr('href'), ->
+      $dialog.modal()
+
   if navigator.userAgent.toLowerCase().indexOf('mac') < 0
    #  $(document.body).append '
    #  <link rel="stylesheet" href="/css/nanoscroller.css">
