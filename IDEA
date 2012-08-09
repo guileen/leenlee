@@ -5,24 +5,26 @@ User
   Hash: user:[id] {id, username, password, email, created_at, logged_at, has_avatar}
   String: user:username:[username] [id]
   String: user:email:[email] [id]
-  Sorted Set: user:[id]:topics [topic_id] [topic_id]
+  Sorted Set: _:users [id] [id]
+  Sorted Set: user:[id]:posts [post_id] [post_id]
   Sorted Set: user:[id]:replies [reply_id] [reply_id]
 
-Topic
-  String: _:topic:nextid
-  Hash: topic:[id] {id, author_id, title, body, created_at}
-  Set: topic:[id]:tags [tag]
-  Sorted Set: topic:[id]:replies [reply_id] [reply_id]
-  String: topic:[id]:num_of_replies [number of replies]
+Post
+  String: _:post:nextid
+  Hash: post:[id] {id, author_id, title, body, created_at}
+  Set: post:[id]:tags [tag]
+  Sorted Set: post:[id]:replies [reply_id] [reply_id]
+  String: post:[id]:num_of_replies [number of replies]
+  Sorted Set: _:posts [id] [id]
 
 Reply
   String: _:reply:nextid
-  Hash: reply:[id] {id, topic_id, author_id, entry, created_at}
-  Sorted Set: topic:[id]:replies [id] [id]
+  Hash: reply:[id] {id, post_id, author_id, entry, created_at}
+  Sorted Set: post:[id]:replies [id] [id]
 
 Tag
   Sorted Set: tags [tag] [number of uses]
-  Sorted Set: tag:[tag] [topic_id] [topic_id]
+  Sorted Set: tag:[tag] [post_id] [post_id]
 
 
 ====== Web Structure ======
@@ -35,8 +37,8 @@ Tag
 /user/[username]
 /user/settings
 /user/settings/profile
-/topic
-/topic/[topic id]
+/post
+/post/[post_id]
 /tag
 /tag/[tag]
 
