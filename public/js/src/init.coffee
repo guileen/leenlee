@@ -1,6 +1,5 @@
-# all-src.less
+L.bindEvents = ()->
 
-$ ->
   $dialog = $ '#dialog'
 
   $('.btn-signup').click (e) ->
@@ -31,6 +30,8 @@ $ ->
     e.preventDefault()
     $dialog.load $(this).attr('href'), ->
       $dialog.modal()
+
+L.fixBrowser = ()->
 
   if navigator.userAgent.toLowerCase().indexOf('mac') < 0
    #  $(document.body).append '
