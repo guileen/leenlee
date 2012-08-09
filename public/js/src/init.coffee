@@ -1,3 +1,5 @@
+# init.coffee
+
 L.bindEvents = ()->
 
   $dialog = $ '#dialog'

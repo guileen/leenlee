@@ -10,6 +10,11 @@ CSS_DEPS = $(CSS_FOLDER)/bootstrap.min.css \
 CSS_SRCS = $(CSS_FOLDER)/all-src.css
 
 COFFEE_FOLDER = $(FOLDER)/js
+COFFEE_SRC_FOLDER = $(COFFEE_FOLDER)/src
+COFFEE_FILES = $(COFFEE_SRC_FOLDER)/base.coffee \
+			   $(COFFEE_SRC_FOLDER)/init.coffee \
+			   $(COFFEE_SRC_FOLDER)/page-*.coffee \
+			   $(COFFEE_SRC_FOLDER)/main.coffee
 COFFEE_C = coffee
 COFFEE_C_OPTS = -c -o $(COFFEE_FOLDER)
 
@@ -39,6 +44,7 @@ all.css:
 	 $(CONCAT) $(CSS_DEPS) $(CSS_SRCS) > $(CSS_FOLDER)/all.css
 
 all-src.js:
+	 @@cat $(COFFEE_FILES) > $(COFFEE_FOLDER)/all-src.coffee
 	 $(COFFEE_C) $(COFFEE_C_OPTS) $(COFFEE_FOLDER)/all-src.coffee
 
 all.min.js:

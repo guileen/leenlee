@@ -1,3 +1,5 @@
+# base.coffee
+
 L = this.L =
   signinDlg: ()->
 
