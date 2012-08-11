@@ -20,8 +20,12 @@ app.configure ->
   app.use app.router
 
 app.configure 'development', ->
+  compiler = require 'connect-compiler'
   app.locals pretty: true
+  # app.use require('less-middleware')  src: __dirname + '/public'
+  app.use compiler roots: {'src': 'dest'}, enabled: ['coffee', 'less'], log_level: 'DEBUG'
   app.use express.static path.join __dirname, 'public'
+  app.use express.static path.join __dirname, 'dest'
   app.use express.errorHandler()
 
 app.get '/', routes.index

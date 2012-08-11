@@ -10,14 +10,20 @@
   "dependencies": {
     "kick": "0.1.5"
   , "connect": "2.x"
+  , "coffee-script": "*"
   , "express": "3.x"
   , "jade": "*"
   , "oauth": "*"
-  , "hiredis": "*"
   , "redis": "*"
   },
-  "devDependencies": {},
-  "optionalDependencies": {},
+  "devDependencies": {
+    "connect-compiler": "*"
+  , "less": "*"
+  , "less-middleware": "*"
+  },
+  "optionalDependencies": {
+    "hiredis": "*"
+  },
   "engines": {
     "node": "*"
   }
