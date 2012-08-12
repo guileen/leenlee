@@ -46,7 +46,12 @@ module.exports = (app) ->
           console.log err.stack if err
           console.log 'my information'
           console.log result
+          # TODO get user info, map to github:username to user_id, write to session
+          res.end loginScript result
+      else
+        res.end '<h1>platform ' + platform + ' not support yet'
 
-      # TODO get user info, map to github:username to user_id, write to session
-      # TODO redirect to where it came from
-      res.end '<script></script><script src="/js/login.js"></script>'
+
+loginScript = (data) ->
+  # TODO redirect to where it came from if haven't opener, location= 'where came from'
+  '<script>(function(e){var t=e.opener;t?(t.L.emit("login",' + JSON.stringify(data) + '),e.close()):location="/"})(window);</script>'
