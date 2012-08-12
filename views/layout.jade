@@ -8,9 +8,12 @@ html
       link(rel='stylesheet', href='/css/nanoscroller.css')
       link(rel='stylesheet', href='/css/all-src.css')
       script(src='/js/jquery.js')
-      script(src='/js/jquery.validate.min.js')
-      script(src='/js/bootstrap.js')
-      script(src="/js/jquery.nanoscroller.js")
+      script(src='/js/jst.js')
+      script(src='/js/plugins/jquery.validate.min.js')
+      script(src='/js/plugins/bootstrap.min.js')
+      script(src="/js/plugins/jquery.nanoscroller.js")
+      script(src='/js/plugins/restclient.js')
+      script(src='/js/plugins/render.js')
       script(src='/js/base.js')
       script(src='/js/init.js')
       script(src='/js/page-index.js')
@@ -23,15 +26,19 @@ html
       block content
         .sidebar
           .top-nav
-            block top-nav
-              h1 leenlee
+            h1 leenlee
+            script#tpl-signin(type='text/template')
               ul.nav.nav-pills
+                | {% if(user){ %}
                 li: a.btn.btn-signup(href='/user/signup') 注册
                 li: a.btn.btn-signin(href='/user/signin') 登录
                 li: a(href='/user/signin/github', target='_top')
                   i.icon-github
                   | github
+                | {% } else { %}
                 li: a(href='/user/signout') 登出
+                | {% } %}
+            block top-nav
           .post-list
             block post-list
               .back-bar
