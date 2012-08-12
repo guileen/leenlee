@@ -92,5 +92,9 @@
     }
   }
 
+  var cache = {};
+  jst.render = function (ctx, data) {
+    return (cache[ctx] || (cache[ctx] = compile(ctx)))(data);
+  }
 })();
 

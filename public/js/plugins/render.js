@@ -16,6 +16,9 @@
       }
 
       if(!ctx) return;
+      if(ctx.flush) {
+        this.flush();
+      }
 
       var $html = $(settings.engine(this.html, ctx));
       if(this.settings.hide) {

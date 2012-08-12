@@ -30,13 +30,13 @@ html
             script#tpl-signin(type='text/template')
               ul.nav.nav-pills
                 | {% if(user){ %}
+                li: a(href='/user/signout') 登出
+                | {% } else { %}
                 li: a.btn.btn-signup(href='/user/signup') 注册
                 li: a.btn.btn-signin(href='/user/signin') 登录
                 li: a(href='/user/signin/github', target='_top')
                   i.icon-github
                   | github
-                | {% } else { %}
-                li: a(href='/user/signout') 登出
                 | {% } %}
             block top-nav
           .post-list

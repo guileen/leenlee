@@ -1,5 +1,4 @@
 # init.coffee
-
 L.bindEvents = ()->
 
   $('.btn-signup').click (e) ->
@@ -66,6 +65,14 @@ L.fixBrowser = ($el)->
     L.loadDlg $(this).attr 'href'
 
   $el.find('form._validate').validate()
+  $el
+
+$.fn.render.defaults.engine = (ctx, data) ->
+  jst.render ctx, data
+
+$.fn.renderX = (data, options) ->
+  $el = this.render(data, options)
+  L.fixBrowser $el
 
 $ ->
   $dialog = $ '#dialog'
