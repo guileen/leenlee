@@ -30,7 +30,6 @@
     }
 
     options.url = options.url || '/';
-    console.log(options.url);
     options.url[options.url.length - 1] != '/' && (options.url = options.url + '/');
     this.options = options;
   }

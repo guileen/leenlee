@@ -15,12 +15,15 @@ html
       script(src='/js/plugins/restclient.js')
       script(src='/js/plugins/render.js')
       script(src='/js/base.js')
-      script(src='/js/init.js')
-      script(src='/js/page-index.js')
+      script(src='/js/models.js')
+      script(src='/js/views.js')
+      script(src='/js/routes/layout.js')
       script(src='/js/main.js')
     - else
       link(rel='stylesheet', href='/css/all.css')
       script(src='/js/all.js')
+    //- 性能
+    script(src='/user/?callback=L.setUser')
   body.post-list
     .page-wrapper
       block content
