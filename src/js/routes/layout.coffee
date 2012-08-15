@@ -1,12 +1,9 @@
 # init.coffee
-
 L.bindEvents = ()->
-
-  $dialog = $ '#dialog'
 
   $('.btn-signup').click (e) ->
     e.preventDefault()
-    $dialog.load $(this).attr('href'), ->
+    L.loadDlg $(this).attr('href'), ->
       $form = $ '#signup-form', $dialog
       $form.validate rules:
         'User[username]':
@@ -26,20 +23,8 @@ L.bindEvents = ()->
         e.preventDefault()
         $.post $form.attr('action'), $form.serialize(), (user) ->
           console.log user
-      $dialog.modal()
 
   $('.btn-signin').click (e) ->
     e.preventDefault()
-    $dialog.load $(this).attr('href'), ->
-      $dialog.modal()
-
-L.fixBrowser = ()->
-
-  if navigator.userAgent.toLowerCase().indexOf('mac') < 0
-   #  $(document.body).append '
-   #  <link rel="stylesheet" href="/css/nanoscroller.css">
-   #  <script src="/js/jquery.nanoscroller.min.js"></script>
-   #  '
-    $('.nano').nanoScroller preventPageScrolling: true
-  else
-    $('.nano, .nano .content').css "overflow-y": 'auto', 'position': 'relative'
+    L.loadDlg $(this).attr('href'), ->
+      console.log $dlg

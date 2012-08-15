@@ -2,6 +2,7 @@ exports = module.exports =
   redis:
     host: 'localhost'
     port: 6379
+    database: 1
   oauth2:
     base_redirect_uri: 'http://localhost:3000/user/signin/oauth2/'
     sina:

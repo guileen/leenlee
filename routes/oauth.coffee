@@ -1,20 +1,21 @@
 OAuth2 = require("oauth").OAuth2
+Github = require '../lib/api/github'
 config = require("../config")
 
 module.exports = (app) ->
 
-  getAppInfo = (type) ->
-    appinfo = config.oauth2[type]
-    appinfo.redirect_uri = config.oauth2.base_redirect_uri + type  if appinfo and not appinfo.redirect_uri
+  getAppInfo = (platform) ->
+    appinfo = config.oauth2[platform]
+    appinfo.redirect_uri = config.oauth2.base_redirect_uri + platform  if appinfo and not appinfo.redirect_uri
     appinfo
 
   getOA2 = (appinfo) ->
     new OAuth2(appinfo.client_id, appinfo.secret, appinfo.base, appinfo.authorize_path, appinfo.access_token_path)
 
-  app.get "/user/signin/:type", (req, res, next) ->
-    type = req.params.type
-    appinfo = getAppInfo(type)
-    return next("OAuth2 info of " + type + " is not defined")  unless appinfo
+  app.get "/user/signin/:platform", (req, res, next) ->
+    platform = req.params.platform
+    appinfo = getAppInfo(platform)
+    return next("OAuth2 info of " + platform + " is not defined")  unless appinfo
     oa2 = getOA2(appinfo)
     ###
     github params
@@ -26,9 +27,9 @@ module.exports = (app) ->
       response_type: "code"
     )
 
-  app.get "/user/signin/oauth2/:type", (req, res, next) ->
-    type = req.params.type
-    appinfo = config.oauth2[type]
+  app.get "/user/signin/oauth2/:platform", (req, res, next) ->
+    platform = req.params.platform
+    appinfo = config.oauth2[platform]
     oa2 = getOA2(appinfo)
     query = req.query
     code = query.code
@@ -39,6 +40,18 @@ module.exports = (app) ->
       return next(err)  if err
       console.log "access_token %s", access_token
       console.log "refresh_token %s", refresh_token
-      # TODO get user info, map to github:username to user_id, write to session
-      # TODO redirect to where it came from
-      res.redirect "/"
+      if platform == 'github'
+        github = new Github access_token
+        github.me (err, result) ->
+          console.log err.stack if err
+          console.log 'my information'
+          console.log result
+          # TODO get user info, map to github:username to user_id, write to session
+          res.end loginScript result
+      else
+        res.end '<h1>platform ' + platform + ' not support yet'
+
+
+loginScript = (data) ->
+  # TODO redirect to where it came from if haven't opener, location= 'where came from'
+  '<script>(function(e){var t=e.opener;t?(t.L.emit("login",' + JSON.stringify(data) + '),e.close()):location="/"})(window);</script>'
