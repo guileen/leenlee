@@ -18,17 +18,24 @@ module.exports = (app) ->
   app.post '/user/signup', (req, res, next) ->
     User.create req.body.User, (err, user) ->
       return next err if err
-      req.session.user = user
-      res.json user
+      delete user.password
+      req.session.regenerate ->
+        req.session.user = user
+        res.json user
 
   app.get '/user/signin', (req, res) ->
     res.render 'user/signin'
 
   app.post '/user/signin', (req, res, next) ->
-    User.verify req.body.username, req.body.password, (err, user) ->
+    User.verify req.body.User.username, req.body.User.password, (err, user) ->
       return next err if err
-      req.session.user = user
-      res.json user
+      if user
+        delete user.password
+        req.session.regenerate ->
+          req.session.user = user
+          res.json user
+      else
+        res.json user
 
   app.get '/user/signout', (req, res) ->
     req.session.regenerate ->

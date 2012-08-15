@@ -1,10 +1,11 @@
 
 L.views = 
   renderUser: (user) ->
-    $el = $('#tpl-signin').renderX({user: user or L.user, flush:true}).show()
+    user = L.user = user or L.user
+    $el = $('#tpl-signin').renderX({user: user, flush:true}).show()
     $el.find('.btn-signup').click (e) ->
       e.preventDefault()
-      L.loadDlg $(this).attr('href'), ->
+      L.loadDlg $(this).attr('href'), ($dlg)->
         $form = $ '#signup-form'
         $form.validate rules:
           'User[username]':
@@ -23,9 +24,19 @@ L.views =
         $form.submit (e) ->
           e.preventDefault()
           $.post $form.attr('action'), $form.serialize(), (user) ->
-            console.log user
+            L.views.renderUser user
+            $dlg.modal('hide')
 
     $el.find('.btn-signin').click (e) ->
       e.preventDefault()
-      L.loadDlg $(this).attr('href'), ->
-        console.log $dlg
+      L.loadDlg $(this).attr('href'), ($dlg)->
+        $form = $ '#signin-form'
+        $form.validate()
+        $form.submit (e) ->
+          e.preventDefault()
+          $.post $form.attr('action'), $form.serialize(), (user) ->
+            if user
+              L.views.renderUser user
+              $dlg.modal 'hide'
+            else
+              $dlg.find('.message').html('用户名或密码错误')

@@ -1,18 +1,19 @@
-.modal-header
-  button.close(type='button', data-dismiss='modal') x
-  h3 登录
-.modal-body
-  form.form-horizontal
+form#signin-form.form-horizontal(action='/user/signin', method='post')
+  .modal-header
+    button.close(type='button', data-dismiss='modal') x
+    h3 登录
+  .modal-body
+    .message
     .control-group
       label.control-label(for='username') 用户名
       .controls
-        input.input-xlarge(type='text', id='username', name='User[username]')
+        input.input-xlarge.required(type='text', id='username', name='User[username]', required)
     .control-group
       label.control-label(for='password') 密码
       .controls
-        input.input-xlarge(type='password', id='password', name='User[password]')
-.modal-footer
-  button.btn.btn-primary(type='submit') 登录
-  a.btn(href='/user/signin/github', target='_top')
-    i.icon-github
-    | Github
+        input.input-xlarge.required(type='password', id='password', name='User[password]', required)
+  .modal-footer
+    button.btn.btn-primary(type='submit') 登录
+    a.btn(href='/user/signin/github', target='_top')
+      i.icon-github
+      | Github

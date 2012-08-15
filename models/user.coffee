@@ -34,7 +34,6 @@ module.exports = (db) ->
           .hmset(UID_ + uid, user)
           .exec (err, res) ->
             return fn err if err
-            delete user.password
             fn err, user
 
     get: (uid, fn) ->
@@ -46,21 +45,21 @@ module.exports = (db) ->
         User.get uid, fn
 
     getByEmail: (email, fn) ->
-      db.get EMAIL_ + username, (err, uid) ->
+      db.get EMAIL_ + email, (err, uid) ->
         return fn err if err
         User.get uid, fn
 
     # get by email or username
     getBy: (str, fn) ->
-      if str.indexOf '@' > 0
+      if str.indexOf('@') > 0
         User.getByEmail str, fn
       else
         User.getByUsername str, fn
 
     verify: (username, password, fn) ->
-      getByUsername username, (err, user) ->
-        return fn err if err
+      User.getBy username, (err, user) ->
+        return fn err if err or not user
         if utils.secrets.equals password, user.password
-          fn user
+          fn null, user
         else
           fn()

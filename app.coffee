@@ -2,12 +2,16 @@ express = require 'express'
 http = require 'http'
 path = require 'path'
 redis = require 'redis'
+cclog = require 'cclog'
 routes = require './routes'
+config = require './config'
+
+cclog.replace()
 
 app = module.exports = express()
 
-db = redis.createClient()
-db.select 1
+db = redis.createClient(config.redis.port, config.redis.host)
+db.select config.redis.database
 
 app.configure 'development', ->
   app.use express.favicon()
@@ -29,8 +33,8 @@ app.configure 'development', ->
   app.locals pretty: true
   # app.use require('less-middleware')  src: __dirname + '/public'
   app.use compiler roots: {'src': 'dest'}, enabled: ['coffee', 'less'], log_level: 'WARN'
-  app.use express.static path.join __dirname, 'public'
   app.use express.static path.join __dirname, 'dest'
+  app.use express.static path.join __dirname, 'public'
   app.use express.errorHandler()
 
 app.get '/', routes.index
