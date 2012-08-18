@@ -21,7 +21,7 @@ box.on 'msg', (from, to, msg) ->
   if match
     id = match[1]
     cclog.log 'id', id
-    Reply.create id, content: msg.text, (err, reply) ->
+    Reply.create id, content: msg.text, isMail: 1, (err, reply) ->
       cclog.info 'done'
 
 box.listen(25)

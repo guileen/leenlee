@@ -31,14 +31,15 @@ module.exports = (db) ->
             return fn err if err
             fn err, reply
 
-            # ... TODO
-            Topic.get pid, (err, topic) ->
-              sendmail
-                id: 'bbsnowall-' + pid
-                from: 'topic-' + pid + '@' + config.dev.mail_server
-                to: config.dev.send_to
-                subject: 'Re:' + topic.title
-                content: reply.content
+            if not reply.isMail
+              # ... TODO
+              Topic.get pid, (err, topic) ->
+                sendmail
+                  id: 'bbsnowall-' + pid
+                  from: 'topic-' + pid + '@' + config.dev.mail_server
+                  to: config.dev.send_to
+                  subject: 'Re:' + topic.title
+                  content: reply.content
 
     get: (uid, fn) ->
       db.hgetall REPLY_ + uid, fn
