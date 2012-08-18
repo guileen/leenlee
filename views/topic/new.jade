@@ -1,0 +1,16 @@
+extends ../layout
+
+block main
+  h1 New topic
+  form#topic-form(action='/topic/', method='post')
+    .control-group
+      label.control-label(for='title') 标题
+      .controls
+        input.input-xlarge.required(name='Topic[title]', required)
+    .control-group
+      label.control-label(for='title') 内容
+      .controls
+        textarea(name='Topic[content]')
+
+    .control-group
+      button.btn.btn-primary(type='submit') 提交

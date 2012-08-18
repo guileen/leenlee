@@ -15,6 +15,7 @@
   , "jade": "*"
   , "oauth": "*"
   , "redis": "*"
+  , "async": "*"
   },
   "devDependencies": {
     "connect-compiler": "*"

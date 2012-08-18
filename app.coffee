@@ -40,9 +40,11 @@ app.configure 'development', ->
 app.get '/', routes.index
 routes.user app
 routes.oauth app
+routes.topic app
 
 app.locals
-  title: 'leenlee'
+  title: config.site.title
+  site_title: config.site.title
   DEBUG: 'production' isnt app.get 'env'
 
 http.createServer(app).listen app.get('port'), ->

@@ -22,3 +22,11 @@ m.user =
     cacheRest.get '/user/' + uid, (err, user) ->
       cache.set uid, user
       fn err, user
+
+m.topic = 
+  get: (id, fn) ->
+    cacheRest.get '/topic/' + id, fn
+
+  getList: (fn) ->
+    cacheRest.get '/topic/list', fn
+

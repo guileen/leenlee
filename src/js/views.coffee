@@ -40,3 +40,7 @@ L.views =
               $dlg.modal 'hide'
             else
               $dlg.find('.message').html('用户名或密码错误')
+
+  renderTopicList: (topics) ->
+    if topics
+      $el = $('#tpl-topic-list').renderX({topics: topics}).show()

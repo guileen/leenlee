@@ -4,4 +4,5 @@ exports.requireLogin = (req, res, next) ->
     res.json ret: -1, msg: 'require login', 403
   else
     res.statusCode = 403
-    res.render '/403'
+    # res.render '/403'
+    res.render '/signin'

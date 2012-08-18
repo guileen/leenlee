@@ -1,4 +1,6 @@
 exports = module.exports =
+  site:
+    title: 'Geek Forum'
   redis:
     host: 'localhost'
     port: 6379

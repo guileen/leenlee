@@ -6,11 +6,11 @@ form#signup-form.form-horizontal(action='/user/signup', method='post')
     .control-group
       label.control-label(for='username') 用户名
       .controls
-        input.required.input-xlarge(type='text', id='username', name='User[username]', required, minlength=3, maxlength=32)
+        input.required.input-xlarge(type='text', id='username', name='User[username]', required, minlength=2, maxlength=32)
     .control-group
       label.control-label(for='password') 密码
       .controls
-        input.required.input-xlarge(type='password', id='password', name='User[password]', required, minlength=5, maxlength=16)
+        input.required.input-xlarge(type='password', id='password', name='User[password]', required, minlength=2, maxlength=16)
     .control-group
       label.control-label(for='email') 邮箱
       .controls

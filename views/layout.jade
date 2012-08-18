@@ -29,10 +29,11 @@ html
       block content
         .sidebar
           .top-nav
-            h1 leenlee
+            h1= site_title
             script#tpl-signin(type='text/template')
               ul.nav.nav-pills
                 | {% if(user){ %}
+                li: a(href='/user/profile') {{ user.username }}
                 li: a(href='/user/signout') 登出
                 | {% } else { %}
                 li: a.btn.btn-signup(href='/user/signup') 注册
@@ -46,12 +47,16 @@ html
             block post-list
               .back-bar
                 a(href='#') 後退
+              a.btn(href='/topic/new') New Topic
               .nano
                 .content
-                  - for (var i =0; i< 100; i++)
+                  script#tpl-topic-list(type='text/template')
+                    | {% for (var i = 0, l = topics.length; i< l; i++) {var topic = topics[i]; %}
                     .list-item
-                      h3 這是一個靠譜的交流社區這是一個靠譜的交流社區這是一個靠譜的交流社區
-                      p 這是一個靠譜的交流社區這是一個靠譜的交流社區這是一個靠譜的交流社區
+                      h3 
+                        a(href='/topic/{{ topic.id }}') {{ topic.title }}
+                      p {{ topic.content }}
+                    | {% } %}
         .main
           block main
 
