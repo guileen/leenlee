@@ -3,6 +3,7 @@ requireLogin = helper.requireLogin
 
 module.exports = (app) ->
   Topic = require('../models/topic') app.get 'db'
+  Reply = require('../models/reply') app.get 'db'
 
   app.get '/topic/', requireLogin, (req, res) ->
     Topic.find start, end, (err, topics) ->
@@ -22,10 +23,17 @@ module.exports = (app) ->
   app.get '/topic/new', requireLogin, (req, res) ->
     res.render 'topic/new'
 
+  app.post '/topic/reply/:id', (req, res) ->
+    id = req.params.id
+    Reply.create id, req.body.Reply, (err, reply) ->
+      res.redirect '/topic/' + id + '#' + reply.id
+
   app.get '/topic/:id', (req, res) ->
-    Topic.get req.params.id, (err, topic) ->
-      if req.xhr and req.accepts 'json'
-        res.json topic
-      else
-        res.render 'topic/show', topic: topic
+    id = req.params.id
+    Topic.get id, (err, topic) ->
+      Reply.getList id, 0, -1, (err, replies) ->
+        if req.xhr and req.accepts 'json'
+          res.json topic
+        else
+          res.render 'topic/show', topic: topic, replies: replies
 

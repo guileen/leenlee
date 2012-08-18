@@ -1,4 +1,5 @@
 async = require 'async'
+sendmail = require('sendmail')()
 
 TOPIC_ = 'topic:'
 TOPICS = '_:topics'
@@ -23,6 +24,12 @@ module.exports = (db) ->
           .exec (err, res) ->
             return fn err if err
             fn err, topic
+            sendmail
+              id: 'bbsnowall-' + uid
+              from: 'topic-' + uid + '@bbs.nowall.be'
+              to: 'guileen@gmail.com'
+              subject: topic.title
+              content: topic.content
 
     get: (uid, fn) ->
       db.hgetall TOPIC_ + uid, fn
