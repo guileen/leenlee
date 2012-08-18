@@ -1,5 +1,6 @@
 async = require 'async'
 sendmail = require('sendmail')()
+config = require '../config'
 
 TOPIC_ = 'topic:'
 TOPICS = '_:topics'
@@ -26,8 +27,8 @@ module.exports = (db) ->
             fn err, topic
             sendmail
               id: 'bbsnowall-' + uid
-              from: 'topic-' + uid + '@bbs.nowall.be'
-              to: 'guileen@gmail.com'
+              from: 'topic-' + uid + '@' + config.dev.mail_server
+              to: config.dev.send_to
               subject: topic.title
               content: topic.content
 

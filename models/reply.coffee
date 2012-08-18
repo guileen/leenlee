@@ -1,5 +1,6 @@
 async = require 'async'
 sendmail = require('sendmail')()
+config = require '../config'
 
 REPLY_ = 'reply:'
 REPLIES_ = '_:replies:'
@@ -20,6 +21,8 @@ module.exports = (db) ->
           created_at: +new Date,
           logged_at: +new Date,
         reply = utils.merge schema, attributes
+        if not reply.content
+          fn new Error('reply content is missing')
         # TODO reply email secret
         db.multi()
           .zadd(REPLIES_ + pid, uid, uid)
@@ -32,8 +35,8 @@ module.exports = (db) ->
             Topic.get pid, (err, topic) ->
               sendmail
                 id: 'bbsnowall-' + pid
-                from: 'topic-' + pid + '@bbs.nowall.be'
-                to: 'guileen@gmail.com'
+                from: 'topic-' + pid + '@' + config.dev.mail_server
+                to: config.dev.send_to
                 subject: 'Re:' + topic.title
                 content: reply.content
 
