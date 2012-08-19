@@ -28,7 +28,7 @@ L.openWindow = (url) ->
     window.open(url, "_blank", feature)
 
 L.fixBrowser = ($el)->
-  $el = $el || $('body');
+  $el = $el || $('body')
 
   $el.find('a[target=_top]').click (e)->
     e.preventDefault()
@@ -42,6 +42,8 @@ L.fixBrowser = ($el)->
     $el.find('.nano').nanoScroller preventPageScrolling: true
   else
     $el.find('.nano, .nano .content').css "overflow-y": 'auto', 'position': 'relative'
+
+  $el.find('a.pjax').pjax('#pjax-content')
 
   $el.find('.ajax-dlg').click (e)->
     e.preventDefault()

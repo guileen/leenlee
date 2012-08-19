@@ -1,16 +1,12 @@
 extends layout
 
 block main
-  .back-bar
-    a(href='#') 後退
-  .nano
-    .content
-      // .post-wrapper.no-reply
-      .post-wrapper
-        .post
-          h2 我是標題
-          - var arr = new Array(100), s = arr.join('我是內容')
-          p #{s}
-        - for(var i=0;i<100;i++)
-          .post
-            p #{arr.join('我是回復')}
+  // .post-wrapper.no-reply
+  .post-wrapper
+    .post
+      h2 我是標題
+      - var arr = new Array(100), s = arr.join('我是內容')
+      p #{s}
+    - for(var i=0;i<100;i++)
+      .post
+        p #{arr.join('我是回復')}

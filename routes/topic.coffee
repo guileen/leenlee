@@ -32,8 +32,5 @@ module.exports = (app) ->
     id = req.params.id
     Topic.get id, (err, topic) ->
       Reply.getList id, 0, -1, (err, replies) ->
-        if req.xhr and req.accepts 'json'
-          res.json topic
-        else
-          res.render 'topic/show', topic: topic, replies: replies
+        res.render 'topic/show', topic: topic, replies: replies
 

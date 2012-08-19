@@ -1,63 +1,72 @@
-doctype 5
-html
-  head
-    meta(charset='utf-8')
-    title= title
-    - if (DEBUG)
-      link(rel='stylesheet', href='/css/bootstrap.min.css')
-      link(rel='stylesheet', href='/css/nanoscroller.css')
-      link(rel='stylesheet', href='/css/all-src.css')
-      script(src='/js/jquery.js')
-      script(src='/js/jst.js')
-      script(src='/js/plugins/jquery.validate.min.js')
-      script(src='/js/plugins/bootstrap.min.js')
-      script(src="/js/plugins/jquery.nanoscroller.js")
-      script(src='/js/plugins/restclient.js')
-      script(src='/js/plugins/render.js')
-      script(src='/js/base.js')
-      script(src='/js/models.js')
-      script(src='/js/views.js')
-      script(src='/js/routes/layout.js')
-      script(src='/js/main.js')
-    - else
-      link(rel='stylesheet', href='/css/all.css')
-      script(src='/js/all.js')
-    //- 性能
-    script(src='/user/?callback=L.setUser')
-  body.post-list
-    .page-wrapper
-      block content
-        .sidebar
-          .top-nav
-            h1= site_title
-            script#tpl-signin(type='text/template')
-              ul.nav.nav-pills
-                | {% if(user){ %}
-                li: a(href='/user/profile') {{ user.username }}
-                li: a(href='/user/signout') 登出
-                | {% } else { %}
-                li: a.btn.btn-signup(href='/user/signup') 注册
-                li: a.btn.btn-signin(href='/user/signin') 登录
-                li: a(href='/user/signin/github', target='_top')
-                  i.icon-github
-                  | github
-                | {% } %}
-            block top-nav
-          .post-list
-            block post-list
-              .back-bar
-                a(href='#') 後退
-              a.btn(href='/topic/new') New Topic
-              .nano
-                .content
-                  script#tpl-topic-list(type='text/template')
-                    | {% for (var i = 0, l = topics.length; i< l; i++) {var topic = topics[i]; %}
-                    .list-item
-                      h3 
-                        a(href='/topic/{{ topic.id }}') {{ topic.title }}
-                      p {{ topic.content }}
-                    | {% } %}
-        .main
-          block main
+if(!locals.pjax)
+  doctype 5
+  html
+    head
+      meta(charset='utf-8')
+      title= title
+      - if (DEBUG)
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/nanoscroller.css')
+        link(rel='stylesheet', href='/css/all-src.css')
+        script(src='/js/jquery.js')
+        script(src='/js/jst.js')
+        script(src='/js/plugins/jquery.validate.min.js')
+        script(src='/js/plugins/bootstrap.min.js')
+        script(src="/js/plugins/jquery.nanoscroller.js")
+        script(src='/js/plugins/jquery.pjax.js')
+        script(src='/js/plugins/restclient.js')
+        script(src='/js/plugins/render.js')
+        script(src='/js/base.js')
+        script(src='/js/models.js')
+        script(src='/js/views.js')
+        script(src='/js/routes/layout.js')
+        script(src='/js/main.js')
+      - else
+        link(rel='stylesheet', href='/css/all.css')
+        script(src='/js/all.js')
+      //- 性能
+      script(src='/user/?callback=L.setUser')
+    body.post-list
+      .page-wrapper
+        block content
+          .sidebar
+            .top-nav
+              h1= site_title
+              script#tpl-signin(type='text/template')
+                ul.nav.nav-pills
+                  | {% if(user){ %}
+                  li: a(href='/user/profile') {{ user.username }}
+                  li: a(href='/user/signout') 登出
+                  | {% } else { %}
+                  li: a.btn.btn-signup(href='/user/signup') 注册
+                  li: a.btn.btn-signin(href='/user/signin') 登录
+                  li: a(href='/user/signin/github', target='_top')
+                    i.icon-github
+                    | github
+                  | {% } %}
+              block top-nav
+            .post-list
+              block post-list
+                .back-bar
+                  a(href='#') 後退
+                a.btn(href='/topic/new') New Topic
+                .nano
+                  .content
+                    script#tpl-topic-list(type='text/template')
+                      | {% for (var i = 0, l = topics.length; i< l; i++) {var topic = topics[i]; %}
+                      .list-item
+                        h3 
+                          a.pjax(href='/topic/{{ topic.id }}') {{ topic.title }}
+                        p {{ topic.content }}
+                      | {% } %}
+          .main
+            .back-bar
+              a(href='#') 後退
+            .nano
+              .content#pjax-content
+                block main
 
-    #dialog.modal.hide
+      #dialog.modal.hide
+
+else
+  block main
