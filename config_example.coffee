@@ -1,14 +1,18 @@
 exports = module.exports =
   site:
-    title: 'Geek Forum'
+    title: 'LeenLee'
   dev:
     send_to: 'guileen@gmail.com'
     mail_server: 'bbs.nowall.be'
-
   redis:
-    host: 'localhost'
-    port: 6379
-    database: 1
+    main:
+      host: 'localhost'
+      port: 6379
+      database: 1
+    session:
+      host: 'localhost'
+      port: 6379
+      database: 2
   oauth2:
     base_redirect_uri: 'http://localhost:3000/user/signin/oauth2/'
     sina:

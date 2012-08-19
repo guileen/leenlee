@@ -19,6 +19,7 @@
   , "smtpd": "*"
   , "sendmail": "*"
   , "cclog": "*"
+  , "connect-redis": "*"
   },
   "devDependencies": {
     "connect-compiler": "*"

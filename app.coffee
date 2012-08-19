@@ -10,8 +10,12 @@ cclog.replace()
 
 app = module.exports = express()
 
-db = redis.createClient(config.redis.port, config.redis.host)
-db.select config.redis.database
+db = redis.createClient(config.redis.main.port, config.redis.main.host)
+db.select config.redis.main.database
+
+session_db = redis.createClient(config.redis.session.port, config.redis.session.host)
+session_db.select config.redis.session.database
+RedisStore = require('connect-redis')(express)
 
 app.configure 'development', ->
   app.use express.favicon()
@@ -24,8 +28,13 @@ app.configure ->
   app.set 'db', db
   app.use express.cookieParser 'sexy girl'
   app.use express.bodyParser()
-  app.use express.session()
+  app.use express.session store: new RedisStore(client: session_db), secret: 'hey jude'
   app.use express.methodOverride()
+  app.use (req, res, next) ->
+    console.log req.query
+    res.locals
+      pjax: req.query._pjax
+    next()
   app.use app.router
 
 app.configure 'development', ->
