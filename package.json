@@ -15,6 +15,10 @@
   , "jade": "*"
   , "oauth": "*"
   , "redis": "*"
+  , "async": "*"
+  , "smtpd": "*"
+  , "sendmail": "*"
+  , "cclog": "*"
   },
   "devDependencies": {
     "connect-compiler": "*"

@@ -2,7 +2,7 @@ helper = require './helper'
 requireLogin = helper.requireLogin
 
 module.exports = (app) ->
-  User = (require '../models/user') app.get 'db'
+  User = require('../models/user') app.get 'db'
 
   app.post '/user/valid/username', (req, res) ->
     User.existsUsername req.body.User.username, (err, exists) ->

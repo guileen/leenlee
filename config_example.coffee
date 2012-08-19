@@ -1,4 +1,10 @@
 exports = module.exports =
+  site:
+    title: 'Geek Forum'
+  dev:
+    send_to: 'guileen@gmail.com'
+    mail_server: 'bbs.nowall.be'
+
   redis:
     host: 'localhost'
     port: 6379

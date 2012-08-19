@@ -20,7 +20,9 @@
         this.flush();
       }
 
-      var $html = $(settings.engine(this.html, ctx));
+      var html = settings.engine(this.html, ctx);
+      html = html.trim() ? html : '<div></div>';
+      var $html = $(html);
       if(this.settings.hide) {
         $html.hide();
       }

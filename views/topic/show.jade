@@ -1,0 +1,24 @@
+extends ../layout
+
+block main
+  .back-bar
+    a(href='#') 後退
+  .nano
+    .content
+      // .post-wrapper.no-reply
+      .post-wrapper
+        .post
+          h2= topic.title
+          p= topic.content
+        - for reply in replies
+          .post
+            p= reply.content
+
+        form#reply-form(action='/topic/reply/#{topic.id}', method='post')
+          .control-group
+            label.control-label(for='title') 回复
+            .controls
+              textarea(name='Reply[content]')
+
+          .control-group
+            button.btn.btn-primary(type='submit') 提交
