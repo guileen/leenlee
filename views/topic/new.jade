@@ -4,13 +4,13 @@ block main
   h1 New topic
   form#topic-form(action='/topic/', method='post')
     .control-group
-      label.control-label(for='title') 标题
+      label.control-label(for='Topic_title') 标题
       .controls
-        input.input-xlarge.required(name='Topic[title]', required)
+        input.input-xlarge.required(type='text', id='Topic_title', name='Topic[title]', required='required')
     .control-group
-      label.control-label(for='title') 内容
+      label.control-label(for='Topic_content') 内容
       .controls
-        textarea(name='Topic[content]')
+        textarea(id='Topic_content', name='Topic[content]')
 
-    .control-group
+    .form-actions
       button.btn.btn-primary(type='submit') 提交

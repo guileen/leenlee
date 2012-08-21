@@ -12,9 +12,9 @@ block main
 
     form#reply-form(action='/topic/reply/#{topic.id}', method='post')
       .control-group
-        label.control-label(for='title') 回复
+        label.control-label(for='Reply_content') 回复
         .controls
-          textarea(name='Reply[content]')
+          textarea(id='Reply_content', name='Reply[content]')
 
-      .control-group
+      .form-actions
         button.btn.btn-primary(type='submit') 提交
