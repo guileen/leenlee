@@ -30,9 +30,9 @@ Tag
 ====== Web Structure ======
 
 /
-/signin
-/signout
-/signup
+/user/signin
+/user/signout
+/user/signup
 /user
 /user/[username]
 /user/settings
