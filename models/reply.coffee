@@ -9,7 +9,7 @@ NEXT_UID = '_:nextid:reply'
 module.exports = (db) ->
   utils = require '../lib/utils'
 
-  Topic = require('./topic')(db)
+  Post = require('./post')(db)
 
   Reply =
     # pid - parent id
@@ -33,12 +33,12 @@ module.exports = (db) ->
 
             if not reply.isMail
               # ... TODO
-              Topic.get pid, (err, topic) ->
+              Post.get pid, (err, post) ->
                 sendmail
                   id: 'bbsnowall-' + pid
-                  from: 'topic-' + pid + '@' + config.dev.mail_server
+                  from: 'post-' + pid + '@' + config.dev.mail_server
                   to: config.dev.send_to
-                  subject: 'Re:' + topic.title
+                  subject: 'Re:' + post.title
                   content: reply.content
 
     get: (uid, fn) ->

@@ -49,15 +49,15 @@ if(!locals.pjax)
               block post-list
                 .back-bar
                   a(href='#') 後退
-                a.btn(href='/topic/new') New Topic
+                a.btn(href='/post/new') New Post
                 .nano
                   .content
-                    script#tpl-topic-list(type='text/template')
-                      | {% for (var i = 0, l = topics.length; i< l; i++) {var topic = topics[i]; %}
+                    script#tpl-post-list(type='text/template')
+                      | {% for (var i = 0, l = posts.length; i< l; i++) {var post = posts[i]; %}
                       .list-item
                         h3 
-                          a.pjax(href='/topic/{{ topic.id }}') {{ topic.title }}
-                        p {{ topic.content }}
+                          a.pjax(href='/post/{{ post.id }}') {{ post.title }}
+                        p {{ post.content }}
                       | {% } %}
           .main
             .back-bar

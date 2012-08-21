@@ -49,7 +49,7 @@ app.configure 'development', ->
 app.get '/', routes.index
 routes.user app
 routes.oauth app
-routes.topic app
+routes.post app
 
 app.locals
   title: config.site.title

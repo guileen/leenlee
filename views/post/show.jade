@@ -4,13 +4,13 @@ block main
   // .post-wrapper.no-reply
   .post-wrapper
     .post
-      h2= topic.title
-      p= topic.content
+      h2= post.title
+      p= post.content
     - for reply in replies
       .post
         p= reply.content
 
-    form#reply-form(action='/topic/reply/#{topic.id}', method='post')
+    form#reply-form(action='/post/reply/#{post.id}', method='post')
       .control-group
         label.control-label(for='Reply_content') 回复
         .controls

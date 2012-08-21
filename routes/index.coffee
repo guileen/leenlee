@@ -1,5 +1,5 @@
 exports.user = require './user'
-exports.topic = require './topic'
+exports.post = require './post'
 exports.oauth = require './oauth'
 
 exports.index = (req, res) ->

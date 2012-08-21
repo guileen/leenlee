@@ -7,8 +7,8 @@ $ ->
   pageHandler = L.pages[$('body').data('page')]
   pageHandler() if pageHandler
   L.views.renderUser()
-  L.models.topic.getList (err, topics) ->
-    L.views.renderTopicList topics
+  L.models.post.getList (err, posts) ->
+    L.views.renderPostList posts
 
 L.on 'login', (data)->
   L.setUser data

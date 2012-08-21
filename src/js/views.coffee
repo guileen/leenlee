@@ -1,5 +1,5 @@
 
-L.views = 
+L.views =
   renderUser: (user) ->
     user = L.user = user or L.user
     $el = $('#tpl-signin').renderX({user: user, flush:true}).show()
@@ -41,6 +41,6 @@ L.views =
             else
               $dlg.find('.message').html('用户名或密码错误')
 
-  renderTopicList: (topics) ->
-    if topics
-      $el = $('#tpl-topic-list').renderX({topics: topics}).show()
+  renderPostList: (posts) ->
+    if posts
+      $el = $('#tpl-post-list').renderX({posts: posts}).show()

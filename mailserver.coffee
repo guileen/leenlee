@@ -6,7 +6,7 @@ config = require './config'
 db = redis.createClient(config.redis.port, config.redis.host)
 db.select config.redis.database
 
-Topic = require('./models/topic') db
+Post = require('./models/post') db
 Reply = require('./models/reply') db
 
 cclog.debug = cclog.log
@@ -17,7 +17,7 @@ box.on 'msg', (from, to, msg) ->
   cclog.log msg
   # msg.headers['message-id']
   id = to.split('@')[0]
-  match = id.match /topic-(.*)/
+  match = id.match /post-(.*)/
   if match
     id = match[1]
     cclog.log 'id', id

@@ -1,0 +1,16 @@
+extends ../layout
+
+block main
+  h1 New post
+  form#post-form(action='/post/', method='post')
+    .control-group
+      label.control-label(for='Post_title') 标题
+      .controls
+        input.input-xlarge.required(type='text', id='Post_title', name='Post[title]', required='required')
+    .control-group
+      label.control-label(for='Post_content') 内容
+      .controls
+        textarea(id='Post_content', name='Post[content]')
+
+    .form-actions
+      button.btn.btn-primary(type='submit') 提交

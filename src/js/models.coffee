@@ -23,10 +23,10 @@ m.user =
       cache.set uid, user
       fn err, user
 
-m.topic = 
+m.post =
   get: (id, fn) ->
-    cacheRest.get '/topic/' + id, fn
+    cacheRest.get '/post/' + id, fn
 
   getList: (fn) ->
-    cacheRest.get '/topic/list', fn
+    cacheRest.get '/post/list', fn
 
