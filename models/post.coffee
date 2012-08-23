@@ -5,6 +5,7 @@ config = require '../config'
 POST_ = 'post:'
 POSTS = '_:posts'
 NEXT_UID = '_:nextid:post'
+BY_TAG = 'tag:'
 
 module.exports = (db) ->
   utils = require '../lib/utils'
@@ -41,3 +42,13 @@ module.exports = (db) ->
         async.map ids, (id, _fn) ->
           db.hgetall POST_ + id, _fn
         , fn
+
+    # Post.byTag('Redis', 0, 10, function(err, posts) { ... })
+    byTag: (tag, offset, count, fn) ->
+      # ZREVRANGEBYSCORE tag:[tag] -inf, +inf LIMIT [offset] [count]
+      db.zrevrangebyscore BY_TAG + tag, '-inf', '+inf', (err, ids) ->
+        console.log ids
+        async.map ids, (id, _fn) ->
+          db.hgetall POST_ + id, _fn
+        , fn
+
